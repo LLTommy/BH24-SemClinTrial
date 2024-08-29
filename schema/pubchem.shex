@@ -1,0 +1,35 @@
+PREFIX : <http://2024.biohackathon.org/ct/pubchem_schema/resources/>
+PREFIX clinicalStudyType: <http://purl.obolibrary.org/obo/OPMI_0000418>
+PREFIX medicalCondition: <http://purl.obolibrary.org/obo/OPMI_0000282>
+PREFIX med2rdf_disease: <http://med2rdf.org/ontology/med2rdf#Disease>
+PREFIX investigation: <http://purl.obolibrary.org/obo/CTO_0000108>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hasStatus: <http://purl.obolibrary.org/obo/OPMI_0000622> # todo: it's and objProp!
+PREFIX hasTitle: <http://purl.org/dc/elements/1.1/title>
+PREFIX hasIdentifier: <http://purl.org/dc/elements/1.1/identifier>
+PREFIX hasPhase: <http://purl.obolibrary.org/obo/CTO_0000125>
+PREFIX hasLabel: <http://www.w3.org/2000/01/rdf-schema#label>
+PREFIX partOf: <http://purl.obolibrary.org/obo/BFO_0000050>
+PREFIX refersTo: <http://semanticscience.org/resource/SIO_000628>
+
+:clinicalTrialShape IRI {
+  a [clinicalStudyType] ;
+  refersTo @:diseaseShape ;
+  hasStatus xsd:string ;
+  hasTitle xsd:string ;
+  hasIdentifier xsd:string ;
+  hasPhase xsd:string
+}
+    
+:diseaseShape IRI {
+  a [medicalCondition] ;
+  a [med2rdf_disease] ;
+  hasLabel xsd:string 
+}
+    
+:interventionShape IRI {
+  a [investigation] ;
+  partOf @:clinicalTrialShape ;
+  refersTo IRI ;
+  hasLabel xsd:string 
+}
