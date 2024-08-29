@@ -67,6 +67,25 @@ Example:
 ct-rdf build-rdf --inputfolder pubchem_data/ --ttlfile clinical_trials_data.ttl
 ```
 
+4. Fetch Clinical Trials Data
+
+The `ct-rdf fetch-ct` command is used to fetch data from the ClinicalTrials.gov API and convert it to RDF format. This command processes a list of clinical trial identifiers, retrieves detailed information from ClinicalTrials.gov, and generates an RDF file containing the data.
+
+### Usage
+
+To use this command, you need to specify the following arguments:
+
+- `inputfile`: The CSV file containing the list of clinical trial identifiers.
+- `start`: The starting index for processing the identifiers.
+- `end`: The ending index for processing the identifiers.
+- `outputfolder`: The folder where the resulting Turtle (.ttl) file will be saved.
+
+**Command Syntax:**
+
+```sh
+ct-rdf fetch-ct --inputfile <inputfile> --start <start> --end <end> --outputfolder <outputfolder>
+```
+
 ## Source Data
 
 Please refer to the following links to obtain the source data files used for extracting PubChem CIDs:
