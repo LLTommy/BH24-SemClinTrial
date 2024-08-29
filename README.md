@@ -20,7 +20,7 @@ pip install .
 
 ## Usage
 
-1. Extract CIDs from JSON
+### Extract CIDs from JSON
 
 Use the extract-cid command to extract PubChem CIDs from a source JSON file.
 
@@ -37,7 +37,7 @@ Example:
 ct-rdf extract-cid --basefile clinical_trials.json --targetfile extracted_cids.csv
 ```
 
-2. Fetch Clinical Trial Data from PubChem
+### Fetch Clinical Trial Data from PubChem
 
 Use the pubchem-from-cid command to fetch clinical trial data from PubChem using the extracted CIDs.
 
@@ -52,7 +52,7 @@ Example:
 ct-rdf pubchem-from-cid --cidfile extracted_cids.csv --targetfolder pubchem_data/
 ```
 
-3. Build RDF from JSON Data
+### Build RDF from JSON Data
 
 Use the build-rdf command to convert the fetched clinical trial data into RDF format.
 
@@ -67,17 +67,45 @@ Example:
 ct-rdf build-rdf --inputfolder pubchem_data/ --ttlfile clinical_trials_data.ttl
 ```
 
+### Fetch Clinical Trials Data
+
+The `ct-rdf fetch-ct` command is used to fetch data from the ClinicalTrials.gov API and convert it to RDF format. This command processes a list of clinical trial identifiers, retrieves detailed information from ClinicalTrials.gov, and generates an RDF file containing the data.
+
+To use this command, you need to specify the following arguments:
+
+- `inputfile`: The CSV file containing the list of clinical trial identifiers.
+- `start`: The starting index for processing the identifiers.
+- `end`: The ending index for processing the identifiers.
+- `outputfolder`: The folder where the resulting Turtle (.ttl) file will be saved.
+
+**Command Syntax:**
+
+```sh
+ct-rdf fetch-ct inputfile.csv outputfile.ttl --start <start> --end <end> 
+```
+
+## Load into Triple Store
+
+You can now load the newly generated .ttl files to your favorite triple store. You can run Jena with Fuseki using 
+
+```
+docker run -it -p 3030:3030 stain/jena-fuseki
+```
+
+## Example queries
+
+TODO
+
 ## Source Data
 
 Please refer to the following links to obtain the source data files used for extracting PubChem CIDs:
 
-    Link to JSON file with clinical trials and PubChem IDs (ClinicalTrials.gov)
-    Link to JSON file with clinical trials and PubChem IDs (EU Clinical Trials Register)
-    Link to JSON file with clinical trials and PubChem IDs (NIPH Clinical Trials Search of Japan)
 
 ## License
 
 This project is licensed under the MIT License.
+
+Data from ClinicalTrials.gov may be subject to copyright
 
 ## Contributing
 
