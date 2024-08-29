@@ -83,20 +83,31 @@ To use this command, you need to specify the following arguments:
 **Command Syntax:**
 
 ```sh
-ct-rdf fetch-ct --inputfile <inputfile> --start <start> --end <end> --outputfolder <outputfolder>
+ct-rdf fetch-ct inputfile.csv outputfile.ttl --start <start> --end <end> 
 ```
+
+5. Load into Triple Store
+
+You can now load the newly generated .ttl files to your favorite triple store. You can run Jena with Fuseki using 
+
+```
+docker run -it -p 3030:3030 stain/jena-fuseki
+```
+
+6. Example queries
+
+TODO
 
 ## Source Data
 
 Please refer to the following links to obtain the source data files used for extracting PubChem CIDs:
 
-    Link to JSON file with clinical trials and PubChem IDs (ClinicalTrials.gov)
-    Link to JSON file with clinical trials and PubChem IDs (EU Clinical Trials Register)
-    Link to JSON file with clinical trials and PubChem IDs (NIPH Clinical Trials Search of Japan)
 
 ## License
 
 This project is licensed under the MIT License.
+
+Data from ClinicalTrials.gov may be subject to copyright
 
 ## Contributing
 
