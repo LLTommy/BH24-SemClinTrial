@@ -21,11 +21,17 @@ def turn_to_rdf(g, json_filename):
     with open(json_filename) as f:
         d = json.load(f)
 
+    # this list of IDs will be added to a CSV output
+
+    id_list = []
+
     for i in d:
         id = i['ctid']
         rdf_study = URIRef("http://clinicaltrials.gov/study/" + id)
         g.add((rdf_study, RDF.type, uriMap['clinicalStudyType']))
         g.add((rdf_study, uriMap['hasIdentifier'], Literal(id, datatype=XSD.string)))
+        # write the list of IDs to a CSV file that can be used downstream
+        id_list.append(id)
 
         title = i['title']
         g.add((rdf_study, uriMap['hasTitle'], Literal(title, datatype=XSD.string)))
@@ -62,6 +68,11 @@ def turn_to_rdf(g, json_filename):
         except Exception as e:
             print(e)
             print("No conditions in " + id)
+
+    # output a CSV that has all the NCT ids that can be used downstream
+    with open("pubchem_id_list.csv", "w") as f:
+        for i in id_list:
+            f.write(f"{i}\n")
 
 def build_rdf_from_json(inputfolder, ttlfilename):
     g = Graph()

@@ -2,6 +2,7 @@ import argparse
 from ct_rdf.cid_extractor import extract_cid_from_json
 from ct_rdf.pubchem_fetcher import ask_json_from_cid
 from ct_rdf.rdf_builder import build_rdf_from_json
+from ct_rdf.fetch_ct import fetch_ct
 
 def main():
     parser = argparse.ArgumentParser(description='Process PubChem and Clinical Trials data.')
@@ -20,6 +21,13 @@ def main():
     parser_rdf.add_argument('inputfolder', type=str, help='Folder with input JSON files')
     parser_rdf.add_argument('ttlfilename', type=str, help='Output Turtle (.ttl) file')
 
+    parser_fetch_ct = subparsers.add_parser('fetch-ct', help='Fetch and convert clinicaltrials.gov data to RDF')
+    parser_fetch_ct.add_argument('inputfile', type=str, help='Input CSV file with clinical trial IDs')
+    parser_fetch_ct.add_argument('--start', type=int, required=False, help='Start index for processing', default=0)
+    parser_fetch_ct.add_argument('--end', type=int, required=False, help='End index for processing', default=100)
+    parser_fetch_ct.add_argument('outputfile', type=str, help='Output Turtle (.ttl) file')
+
+
     args = parser.parse_args()
 
     if args.command == 'extract-cid':
@@ -28,6 +36,8 @@ def main():
         ask_json_from_cid(args.cid_filename, args.targetfolder)
     elif args.command == 'build-rdf':
         build_rdf_from_json(args.inputfolder, args.ttlfilename)
+    elif args.command == 'fetch-ct':
+        fetch_ct(args.inputfile, args.start, args.end, args.outputfile)
     else:
         parser.print_help()
 
