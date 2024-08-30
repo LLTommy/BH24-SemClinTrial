@@ -1,15 +1,15 @@
     # PUBCHEM https://github.com/NuriaQueralt/BH24-SemClinTrial/blob/main/pubchem_crawler.py
     "clinicalStudyType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000418'), 
-    "medicalCondition" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), # classType
+    "medicalCondition" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), 
     "med2rdf_disease" : URIRef('http://med2rdf.org/ontology/med2rdf#Disease'),
     "investigation" : URIRef('http://purl.obolibrary.org/obo/CTO_0000108'), 
     "hasIdentifier" : URIRef('http://purl.org/dc/elements/1.1/identifier'), 
     "hasTitle" : URIRef('http://purl.org/dc/elements/1.1/title'), 
     "partOf" : URIRef('http://purl.obolibrary.org/obo/BFO_0000050'), 
     "hasLabel" : URIRef('http://www.w3.org/2000/01/rdf-schema#label'),
-    "hasPhase" : URIRef('http://purl.obolibrary.org/obo/CTO_0000125'), # AnnotProp
+    "hasPhase" : URIRef('http://purl.obolibrary.org/obo/CTO_0000125'), 
     "hasStatus" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000622'), 
-    "investigatesCondition" : URIRef('http://semanticscience.org/resource/SIO_000628'), # objProp 
+    "investigatesCondition" : URIRef('http://semanticscience.org/resource/SIO_000628'),  
 
     
     # CT https://github.com/NuriaQueralt/BH24-SemClinTrial/blob/main/ct_rdf/fetch_ct.py
