@@ -1,0 +1,53 @@
+PREFIX : <http://2024.biohackathon.org/ct/ct_schema/resources/>
+PREFIX clinicalStudyType: <http://purl.obolibrary.org/obo/OPMI_0000418>
+PREFIX medicalCondition: <http://purl.obolibrary.org/obo/OPMI_0000282>
+PREFIX med2rdf_disease: <http://med2rdf.org/ontology/med2rdf#Disease>
+PREFIX investigation: <http://purl.obolibrary.org/obo/CTO_0000108>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX hasIdentifier: <http://purl.org/dc/elements/1.1/identifier>
+PREFIX hasLabel: <http://www.w3.org/2000/01/rdf-schema#label>
+PREFIX partOf: <http://purl.obolibrary.org/obo/BFO_0000050>
+PREFIX refersTo: <http://semanticscience.org/resource/SIO_000628>
+PREFIX runBy: <http://purl.org/dc/elements/1.1/creator> 
+PREFIX hasTitle: <http://purl.org/dc/elements/1.1/title>
+PREFIX hasOfficialTitle: <http://purl.obolibrary.org/obo/CTO_0000121>
+PREFIX hasLeadSponsor: <http://purl.org/dc/terms/mediator>
+PREFIX hasBriefSummary: <http://purl.org/dc/elements/1.1/description>
+PREFIX hasDetailedSummary: <http://www.w3.org/2000/01/rdf-schema#comment> 
+PREFIX hasCondition: <http://hasCondition>
+PREFIX hasConditionKeyword: <http://hasConditionKeyword>
+PREFIX isStudyType: <http://isOfStudyType>
+PREFIX hasPrimaryOutcome: <http://hasPrimaryOutcome> 
+PREFIX hasSecondaryOutcome: <http://hasSecondaryOutcome> 
+PREFIX hasEligibilityCriteria: <http://hasEligibilityCriteria>
+
+
+:clinicalTrialShape IRI {
+  a [clinicalStudyType] ;
+  refersTo @:diseaseShape ;
+  hasIdentifier xsd:string ;
+  runBy xsd:string ;
+  hasTitle xsd:string ;
+  hasOfficialTitle xsd:string ;
+  hasLeadSponsor xsd:string ;
+  hasBriefSummary xsd:string ;
+  hasDetailedSummary xsd:string ;
+  hasCondition xsd:string ;
+  hasConditionKeyword xsd:string ;
+  isStudyType xsd:string ;
+  hasPrimaryOutcome xsd:string ;
+  hasSecondaryOutcome xsd:string ;
+  hasEligibilityCriteria xsd:string 
+}
+    
+:diseaseShape IRI { # MESH IRI
+  a [medicalCondition] ;
+  a [med2rdf_disease] ;
+  hasLabel xsd:string 
+}
+    
+:interventionShape IRI { # MESH IRI
+  a [investigation] ;
+  partOf @:clinicalTrialShape ;
+  hasLabel xsd:string 
+}

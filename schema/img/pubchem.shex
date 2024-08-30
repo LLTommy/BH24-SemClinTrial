@@ -1,0 +1,30 @@
+PREFIX : <http://2024.biohackathon.org/ct/pubchem_schema/resources/>
+PREFIX obo: <http://purl.obolibrary.org/obo/>
+PREFIX med2rdf: <http://med2rdf.org/ontology/med2rdf#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX sio: <http://semanticscience.org/resource/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+
+:clinicalTrialShape IRI {
+  rdf:type [obo:OPMI_0000418] ;
+  sio:SIO_000628 @:diseaseShape ;
+  obo:OPMI_0000622 xsd:string ;
+  dc:title xsd:string ;
+  dc:identifier xsd:string ;
+  obo:CTO_0000125 xsd:string
+}
+    
+:diseaseShape IRI {
+  rdf:type [obo:OPMI_0000282] ;
+  rdf:type [med2rdf:Disease] ;
+  rdfs:label xsd:string 
+}
+    
+:interventionShape IRI {
+  rdf:type [obo:CTO_0000108] ;
+  obo:BFO_0000050 @:clinicalTrialShape ;
+  sio:SIO_000628 IRI ;
+  rdfs:label xsd:string 
+}
