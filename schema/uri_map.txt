@@ -33,7 +33,7 @@
     "investigation" : URIRef('http://purl.obolibrary.org/obo/CTO_0000108'), 
     "hasLabel" : URIRef('http://www.w3.org/2000/01/rdf-schema#label'),
     "hasPhase" : URIRef('http://purl.obolibrary.org/obo/CTO_0000125'), 
-    "hasStatus" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000622'), 
+    "hasStatus" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000622'), # todo: it's and objProp! 
     "medicalCondition" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), 
     ######################################################################################
 
