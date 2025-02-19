@@ -27,7 +27,7 @@ def turn_to_rdf(g, json_filename):
 
     for i in d:
         id = i['ctid']
-        rdf_study = URIRef("http://clinicaltrials.gov/study/" + id)
+        rdf_study = URIRef("https://clinicaltrials.gov/study/" + id)
         g.add((rdf_study, RDF.type, uriMap['clinicalStudyType']))
         g.add((rdf_study, uriMap['hasIdentifier'], Literal(id, datatype=XSD.string)))
         # write the list of IDs to a CSV file that can be used downstream
