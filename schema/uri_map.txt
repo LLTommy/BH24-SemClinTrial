@@ -1,36 +1,83 @@
+    # CTO    #############################################################################
+    # CTO properties in ontobee: https://ontobee.org/search?ontology=CTO&keywords=&submit=Search+terms
+    # CTO properties in NCBO BioPortal: https://bioportal.bioontology.org/ontologies/CTO?p=properties
+    ######################################################################################
+
+
+
+    # PUBCHEM   ##########################################################################
     # PUBCHEM https://github.com/NuriaQueralt/BH24-SemClinTrial/blob/main/pubchem_crawler.py
-    "clinicalStudyType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000418'), 
-    "medicalCondition" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), 
-    "med2rdf_disease" : URIRef('http://med2rdf.org/ontology/med2rdf#Disease'),
-    "investigation" : URIRef('http://purl.obolibrary.org/obo/CTO_0000108'), 
+    ## types *in the minimal model and ASYNC to RDF*: add types for 'Clinical Trial', 'Disease' and 'Intervention' entities
+    ### ClinicalTrial (or 'rdf_study'=URIRef("http://clinicaltrials.gov/study/" + id) in RDF script)
+    ### Disease (or 'medical_condition' = URIRef('http://medical_condition' + str(hash(con))) in RDF script)
+    "med2rdDiseaseType" : URIRef('http://med2rdf.org/ontology/med2rdf#Disease'),
+    ### Intervention (or 'rdfint'=URIRef('http://'+str(hash(intervention))) in RDF script)
+    
+
+   
+    ## properties
+    ### *in the minimal model and to be added to RDF*: add two new properties (ClinicalTrial, sio:refers-to, Disease) in model or (rdf_study, investigatesCondition, medical_condition) in RDF script; and (Intervention, obo:part-of, ClinicalTrial) in model or (rdfint, partOf, rdf_study) in RDF script 
+    ### refers-to
+    ### part-of
+
+
+    ### *in the minimal model and ASYNC to RDF*: replace to (suggested)
     "hasIdentifier" : URIRef('http://purl.org/dc/elements/1.1/identifier'), 
-    "hasTitle" : URIRef('http://purl.org/dc/elements/1.1/title'), 
-    "partOf" : URIRef('http://purl.obolibrary.org/obo/BFO_0000050'), 
-    "hasLabel" : URIRef('http://www.w3.org/2000/01/rdf-schema#label'),
-    "hasPhase" : URIRef('http://purl.obolibrary.org/obo/CTO_0000125'), 
-    "hasStatus" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000622'), 
     "investigatesCondition" : URIRef('http://semanticscience.org/resource/SIO_000628'),  
 
-    
-    # CT https://github.com/NuriaQueralt/BH24-SemClinTrial/blob/main/ct_rdf/fetch_ct.py
+
+    ### same as in RDF
     "clinicalStudyType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000418'), 
-    "medicalCondition" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), 
-    "med2rdf_disease" : URIRef('http://med2rdf.org/ontology/med2rdf#Disease'), 
+    "hasTitle" : URIRef('http://purl.org/dc/elements/1.1/title'), 
+    "partOf" : URIRef('http://purl.obolibrary.org/obo/BFO_0000050'), 
     "investigation" : URIRef('http://purl.obolibrary.org/obo/CTO_0000108'), 
+    "hasLabel" : URIRef('http://www.w3.org/2000/01/rdf-schema#label'),
+    "hasPhase" : URIRef('http://purl.obolibrary.org/obo/CTO_0000125'), 
+    "hasStatus" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000622'), # todo: it's and objProp! 
+    "medicalCondition" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), 
+    ######################################################################################
+
+
+
+
+    # CT  ################################################################################    
+    # CT https://github.com/NuriaQueralt/BH24-SemClinTrial/blob/main/CTR_crawler.py
+    ## types *in the model and ASYNC to RDF*: add types for 'Clinical Trial', 'Disease' and 'Intervention' entities
+    ### ClinicalTrial (or 'studyIdentifier' = URIRef("https://clinicaltrials.gov/study/" +...  in RDF script)
+    "opmiClinicalStudyType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000418'), 
+    ### Disease (or 'con' = LITERAL or 'condition_mesh' = URIRef("http://purl.bioontology.org/ontology/MESH/" + con["id"]) in RDF script) or may need to add the new 'medical_condition' entity uri and link it to 'condition_mesh' 
+    "opmiDiseaseType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), 
+    "med2rdDiseaseType" : URIRef('http://med2rdf.org/ontology/med2rdf#Disease'), 
+    ### Intervention (or 'intervention_mesh' = URIRef("http://purl.bioontology.org/ontology/MESH/" + int["id"]) in RDF script) or may need to add the new 'intervention' entity uri and link it to 'intervention_mesh' = URIRef("http://purl.bioontology.org/ontology/MESH/" + int["id"]) in RDF script)
+    "ctoInterventionType" : URIRef('http://purl.obolibrary.org/obo/CTO_0000108'), 
+    
+    
+
+    ## properties
+    ### *in the minimal model and to be added to RDF*: add two new properties (ClinicalTrial, sio:refers-to, Disease) in model or (studyIdentifier, hasConditionMesh, condition_mesh) in RDF script; and (Intervention, obo:part-of, ClinicalTrial) in model or (intervention_mesh, hasInterventionMesh, studyIdentifier) in RDF script
+    ### refers-to
+    ### part-of
+
+
+    ### *in the minimal model and ASYNC to RDF*: replace to (suggested)
     "hasIdentifier": URIRef('http://purl.org/dc/elements/1.1/identifier'), 
     "runBy": URIRef('http://purl.org/dc/elements/1.1/creator'), 
-    "hasTitle": URIRef('http://purl.obolibrary.org/obo/CTO_0000122'), 
     "hasOfficialTitle": URIRef('http://purl.obolibrary.org/obo/CTO_0000121'), 
     "hasLeadSponsor": URIRef('http://purl.org/dc/terms/mediator'), 
     "hasBriefSummary": URIRef('http://purl.org/dc/elements/1.1/description'), 
     "hasDetailedSummary": URIRef('http://www.w3.org/2000/01/rdf-schema#comment'), 
+    "hasConditionMesh": URIRef('http://semanticscience.org/resource/SIO_000628'), 
+    "hasInterventionMesh": URIRef('http://purl.obolibrary.org/obo/BFO_0000050'), 
+    
+
+    ### same as in RDF
+    "hasTitle": URIRef('http://purl.org/dc/elements/1.1/title'), # NOTE that in CTO exists "hasBriefTitle": URIRef('http://purl.obolibrary.org/obo/CTO_0000122') 
     "hasCondition": URIRef('http://hasCondition'), 
     "hasConditionKeyword": URIRef('http://hasConditionKeyword'), 
     "isStudyType": URIRef('http://isOfStudyType'), 
     "hasPrimaryOutcome": URIRef('http://hasPrimaryOutcome'), 
     "hasSecondaryOutcome": URIRef('http://hasSecondaryOutcome'), 
     "hasEligibilityCriteria": URIRef('http://hasEligibilityCriteria'), 
-    "hasConditionMesh": URIRef('http://semanticscience.org/resource/SIO_000628'), 
-    "hasInterventionMesh": URIRef('http://purl.obolibrary.org/obo/BFO_0000050'), 
     "hasLabel": URIRef('http://www.w3.org/2000/01/rdf-schema#label'), 
+    ######################################################################################
     
