@@ -7,24 +7,21 @@
 
     # PUBCHEM   ##########################################################################
     # PUBCHEM https://github.com/NuriaQueralt/BH24-SemClinTrial/blob/main/pubchem_crawler.py
-    ## types *in the model and ASYNC to RDF*: add types for 'Clinical Trial', 'Disease' and 'Intervention' entities
+    ## types *in the minimal model and ASYNC to RDF*: add types for 'Clinical Trial', 'Disease' and 'Intervention' entities
     ### ClinicalTrial (or 'rdf_study'=URIRef("http://clinicaltrials.gov/study/" + id) in RDF script)
-    "opmiClinicalStudyType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000418'), # or "clinicalStudyType" in RDF script (see below)
     ### Disease (or 'medical_condition' = URIRef('http://medical_condition' + str(hash(con))) in RDF script)
-    "opmiDiseaseType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000282'), # or "medicalCondition" in RDF script (see below)
     "med2rdDiseaseType" : URIRef('http://med2rdf.org/ontology/med2rdf#Disease'),
     ### Intervention (or 'rdfint'=URIRef('http://'+str(hash(intervention))) in RDF script)
-    "ctoInterventionType" : URIRef('http://purl.obolibrary.org/obo/CTO_0000108'), # or "investigation" in RDF script (see below)
     
 
    
     ## properties
-    ### *new in the model and ASYNC to RDF*: add two new properties (ClinicalTrial, sio:refers-to, Disease) in model or (rdf_study, investigatesCondition, medical_condition) in RDF script; and (Intervention, obo:part-of, ClinicalTrial) in model or (rdfint, partOf, rdf_study) in RDF script 
-    "investigatesCondition": URIRef('http://semanticscience.org/resource/SIO_000628'),
-    "partOf" : URIRef('http://purl.obolibrary.org/obo/BFO_0000050'),
+    ### *in the minimal model and to be added to RDF*: add two new properties (ClinicalTrial, sio:refers-to, Disease) in model or (rdf_study, investigatesCondition, medical_condition) in RDF script; and (Intervention, obo:part-of, ClinicalTrial) in model or (rdfint, partOf, rdf_study) in RDF script 
+    ### refers-to
+    ### part-of
 
 
-    ### *new in the model and ASYNC to RDF*: replace to (suggested)
+    ### *in the minimal model and ASYNC to RDF*: replace to (suggested)
     "hasIdentifier" : URIRef('http://purl.org/dc/elements/1.1/identifier'), 
     "investigatesCondition" : URIRef('http://semanticscience.org/resource/SIO_000628'),  
 
@@ -45,7 +42,7 @@
 
     # CT  ################################################################################    
     # CT https://github.com/NuriaQueralt/BH24-SemClinTrial/blob/main/CTR_crawler.py
-    ## types *new in the model and ASYNC to RDF*: add types for 'Clinical Trial', 'Disease' and 'Intervention' entities
+    ## types *in the model and ASYNC to RDF*: add types for 'Clinical Trial', 'Disease' and 'Intervention' entities
     ### ClinicalTrial (or 'studyIdentifier' = URIRef("https://clinicaltrials.gov/study/" +...  in RDF script)
     "opmiClinicalStudyType" : URIRef('http://purl.obolibrary.org/obo/OPMI_0000418'), 
     ### Disease (or 'con' = LITERAL or 'condition_mesh' = URIRef("http://purl.bioontology.org/ontology/MESH/" + con["id"]) in RDF script) or may need to add the new 'medical_condition' entity uri and link it to 'condition_mesh' 
@@ -57,12 +54,12 @@
     
 
     ## properties
-    ### *new in the model and ASYNC to RDF*: add two new properties (ClinicalTrial, sio:refers-to, Disease) in model or (studyIdentifier, hasConditionMesh, condition_mesh) in RDF script; and (Intervention, obo:part-of, ClinicalTrial) in model or (intervention_mesh, hasInterventionMesh, studyIdentifier) in RDF script
-    "hasConditionMesh": URIRef('http://semanticscience.org/resource/SIO_000628'),
-    "hasInterventionMesh" : URIRef('http://purl.obolibrary.org/obo/BFO_0000050'),
+    ### *in the minimal model and to be added to RDF*: add two new properties (ClinicalTrial, sio:refers-to, Disease) in model or (studyIdentifier, hasConditionMesh, condition_mesh) in RDF script; and (Intervention, obo:part-of, ClinicalTrial) in model or (intervention_mesh, hasInterventionMesh, studyIdentifier) in RDF script
+    ### refers-to
+    ### part-of
 
 
-    ### *new in the model and ASYNC to RDF*: replace to (suggested)
+    ### *in the minimal model and ASYNC to RDF*: replace to (suggested)
     "hasIdentifier": URIRef('http://purl.org/dc/elements/1.1/identifier'), 
     "runBy": URIRef('http://purl.org/dc/elements/1.1/creator'), 
     "hasOfficialTitle": URIRef('http://purl.obolibrary.org/obo/CTO_0000121'), 
