@@ -14,7 +14,7 @@ This software brings together data about clinical trials from various sources an
 
 ```bash
 git clone <repository-url>
-cd clinical-trials-rdf-converter
+cd BH24-SemClinTrial/
 pip install .
 ```
 
@@ -28,13 +28,13 @@ The JSON file can be downloaded from https://pubchem.ncbi.nlm.nih.gov/source/153
 
 ```
 
-ct-rdf extract-cid --basefile <source_json_file> --targetfile <output_cid_file>
+ct-rdf extract-cid <source_json_file> <output_cid_file>
 ```
 
 Example:
 
 ```
-ct-rdf extract-cid --basefile clinical_trials.json --targetfile extracted_cids.csv
+ct-rdf extract-cid clinical_trials.json extracted_cids.csv
 ```
 
 ### Fetch Clinical Trial Data from PubChem
@@ -42,14 +42,14 @@ ct-rdf extract-cid --basefile clinical_trials.json --targetfile extracted_cids.c
 Use the pubchem-from-cid command to fetch clinical trial data from PubChem using the extracted CIDs.
 
 ```
-ct-rdf pubchem-from-cid --cidfile <input_cid_file> --targetfolder <output_folder>
+ct-rdf pubchem-from-cid <input_cid_file> <output_folder>
 ```
 
 Example:
 
 ```bash
 
-ct-rdf pubchem-from-cid --cidfile extracted_cids.csv --targetfolder pubchem_data/
+ct-rdf pubchem-from-cid extracted_cids.csv pubchem_data/
 ```
 
 ### Build RDF from JSON Data
@@ -58,13 +58,13 @@ Use the build-rdf command to convert the fetched clinical trial data into RDF fo
 
 ```bash
 
-ct-rdf build-rdf --inputfolder <json_input_folder> --ttlfile <output_rdf_ttl_file>
+ct-rdf build-rdf <json_input_folder> <output_rdf_ttl_file>
 ```
 Example:
 
 ```bash
 
-ct-rdf build-rdf --inputfolder pubchem_data/ --ttlfile clinical_trials_data.ttl
+ct-rdf build-rdf pubchem_data/ clinical_trials_data.ttl
 ```
 
 ### Fetch Clinical Trials Data
@@ -76,7 +76,7 @@ To use this command, you need to specify the following arguments:
 - `inputfile`: The CSV file containing the list of clinical trial identifiers.
 - `start`: The starting index for processing the identifiers.
 - `end`: The ending index for processing the identifiers.
-- `outputfolder`: The folder where the resulting Turtle (.ttl) file will be saved.
+- `outputfile`: The file where the resulting Turtle (.ttl) file will be saved.
 
 **Command Syntax:**
 
